@@ -143,7 +143,7 @@
                 $sql_art_material->bind_param("ii", $piece_id, $material_id);
                 $sql_art_material->execute();
                 printf("Debug: %d rows Inserted.<br>", $sql_art_material->affected_rows);
-                $sql_art_marteial->close();
+                $sql_art_material->close();
             }
             // Echo out the results of the script.
             echo "<br>----------<br>";
