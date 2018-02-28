@@ -13,6 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="scripts/addPiece.js"></script>
     <script src="scripts/popLists.js"></script>
+    <script src="scripts/materialCreate.js"></script>
     <style>
         body {
             background-color: #e7e7e7;
@@ -90,9 +91,12 @@
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label for="mattype">Materials:</label>
-                        <select id="inputMat" class="form-control">
-
-                        </select>
+                        <div class="input-group">
+                            <select id="inputMat" class="form-control"></select>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#createNewMaterial">New</button>
+                            </div>
+                        </div>
                     </div>
                 </div> <!-- Third Column -->
             </div>
@@ -146,6 +150,26 @@
 
         </div>
         
+        <div class="modal fade" tabindex="-1" role="dialog" id="createNewMaterial">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">New Material</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> <!-- Header -->
+                    <div class="modal-body">
+                        <input type="text" class="form-control" id="materialInput" placeholder="Material Type">
+                        <div id="matConformation"></div>
+                    </div> <!-- Body -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="submitMaterial">Create Material</button>
+                    </div> <!-- Footer -->
+                </div> <!-- Content -->
+            </div> <!-- Dialog -->
+        </div> <!-- Modal -->
 </body>
 
 

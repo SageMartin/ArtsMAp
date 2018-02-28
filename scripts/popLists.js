@@ -1,4 +1,8 @@
 $(document).ready(function() {
+    $("#createNewMaterial").on('hide.bs.modal', function () {
+        popMat();
+        //console.log("hidden");
+    });
     popMat();
     function popMat() {
         $.ajax({
