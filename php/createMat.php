@@ -10,18 +10,41 @@
     }
 
     $new_mat = $_POST["input"];
-    debug("New Material: " . $new_mat);
-
-    if (!($sql_material_ins = $con->prepare("INSERT INTO MaterialType (type) VALUES (?)"))) {
-        debug(sprintf("Material Insert prepare failed: ( %s ) %s", $con->errno, $con->error));
+    debug("Attempting to create material " . $new_mat . '.');
+    if (!($check_material = $con->prepare("SELECT materialID FROM MaterialType WHERE type = ?"))) {
+        debug(sprintf("Material Check prepare failed: ( %s ) %s", $con->errno, $con->error));
     } else {
-        $sql_material_ins->bind_param("s", $new_mat);
-        $sql_material_ins->execute();
-        debug(sprintf("%d rows inserted.", $sql_material_ins->affected_rows));
-        $sql_material_ins->close();
-        $material_id = $con->insert_id;
-        debug(sprintf("New materialID: %d", $material_id));
+        $check_material->bind_param("s", $new_mat);
+        $check_material->execute();
+        $check_material->bind_result($material_id);
+        $check_material->store_result();
+        debug(sprintf("%d matching rows.", $check_material->affected_rows));
+        if ($check_material->affected_rows > 0) {
+            $check_material->fetch();
+            if (!$material_id) {
+                debug("No material found.");
+            } else {
+                debug(sprintf("Material " . $new_mat . " exists materialID found is %d.", $material_id));
+            }
+        }
+        $check_material->free_result();
+        $check_material->close();
     }
-    echo "Created new material called: " . $new_mat . "!";
+    if (!$material_id) {
+        debug("Creating material " . $new_mat . ".");
+        if (!($sql_material_ins = $con->prepare("INSERT INTO MaterialType (type) VALUES (?)"))) {
+            debug(sprintf("Material Insert prepare failed: ( %s ) %s", $con->errno, $con->error));
+        } else {
+            $sql_material_ins->bind_param("s", $new_mat);
+            $sql_material_ins->execute();
+            debug(sprintf("%d rows inserted.", $sql_material_ins->affected_rows));
+            $sql_material_ins->close();
+            $material_id = $con->insert_id;
+            debug(sprintf("New materialID: %d", $material_id));
+        }
+        echo "Created new material called: " . $new_mat . "!";
+    } else {
+        echo "Material " . $new_mat . " already exists!";
+    }
     $con->close();
 ?>

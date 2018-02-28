@@ -4,7 +4,7 @@ $(document).ready(function() {
     });
     
     function createMaterial() {
-        console.log($('#materialInput').val());
+        //console.log($('#materialInput').val());
         $.ajax({
             url: "php/createMat.php",
             data: {
