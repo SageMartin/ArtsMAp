@@ -12,6 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="scripts/addPiece.js"></script>
+    <script src="scripts/popLists.js"></script>
     <style>
         body {
             background-color: #e7e7e7;
@@ -67,8 +68,8 @@
                 <h2>Info</h2>
             </div>
         </div>
-        <div class="row">
-            <form id="mine" action="add2.php" method="post">
+        <form id="mine" action="add2.php" method="post">
+            <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label for="fname">Artist First Name:</label>
@@ -82,12 +83,22 @@
                         <label for="artpiece">Name of Piece:</label>
                         <input type="text" class="form-control" id="artpiece">
                     </div>
-                </div>
+                </div> <!-- First Column -->
                 <div class="col-sm-3">
-                    
-                </div>
-            </form>
-        </div>
+
+                </div> <!-- Second Column-->
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="mattype">Materials:</label>
+                        <select id="inputMat" class="form-control">
+
+                        </select>
+                    </div>
+                </div> <!-- Third Column -->
+            </div>
+        </form>
+    </div>
+    <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3">
                 <form class="form" method="POST" id="info">
