@@ -9,7 +9,7 @@
         debug("Failed to connect to MySQL (" . $con->connect_errno . ") " . $con->connect_error);
     }
 
-    $new_mat = $_POST["input"];
+    $new_mat = htmlspecialchars($_POST["input"]);
     debug("Attempting to create material " . $new_mat . '.');
     if (!($check_material = $con->prepare("SELECT materialID FROM MaterialType WHERE type = ?"))) {
         debug(sprintf("Material Check prepare failed: ( %s ) %s", $con->errno, $con->error));

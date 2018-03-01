@@ -20,13 +20,13 @@
                 echo "Failed to connect to MySQL: (" . $con->connect_errno . ") " . $con->connect_error; 
             }
             // Grab all the stuff from the forms.
-            $piece = $_POST["artpiece"];
-            $fname = $_POST["fname"];
-            $lname = $_POST["lname"];
-            $installed = $_POST["installed"];
-            $material = $_POST["material"];
-            $notes = $_POST["notes"];
-            $owner = $_POST["owner"];
+            $piece = htmlspecialchars($_POST["artpiece"]);
+            $fname = htmlspecialchars($_POST["fname"]);
+            $lname = htmlspecialchars($_POST["lname"]);
+            $installed = htmlspecialchars($_POST["installed"]);
+            $material = htmlspecialchars($_POST["material"]);
+            $notes = htmlspecialchars($_POST["notes"]);
+            $owner = htmlspecialchars($_POST["owner"]);
             // Echo out all the things.
             echo $piece . "<br>";
             echo $fname . "<br>";
